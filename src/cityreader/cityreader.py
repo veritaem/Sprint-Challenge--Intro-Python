@@ -22,16 +22,16 @@ class City:
       self.lon = lon
       
     def __str__(self):
-      return f'City({self.name},{float(self.lat)},{float(self.lon)})'
+      return f'City({self.name},{repr(self.lat)},{repr(self.lon)})'
     def __repr__(self):
-      return  f'City({str(self.name)}, {float(self.lat)}, {float(self.lon)})'
+      return  f'City({repr(self.name)}, {float(self.lat)}, {float(self.lon)})'
 
 def cityreader(cities = []):
   with open('cities.csv', newline = '') as csvfile:
     newfile = csv.reader(csvfile)
     next(newfile)
     for row in newfile:
-      cities.append(City(row[0], row[3], row[4]))
+      cities.append(City(row[0], float(row[3]), float(row[4])))
   return cities
 print(cityreader(cities))
 
